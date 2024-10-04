@@ -20,6 +20,8 @@ from stable_baselines3.common.torch_layers import (
     BaseFeaturesExtractor,
     FlattenExtractor,
 )
+from stable_baselines3.common.policies import ActorCriticPolicy
+from stable_baselines3.common.type_aliases import Schedule
 import math
 
 class FixedStdActorCriticPolicy(sb.common.policies.ActorCriticPolicy):
@@ -28,14 +30,13 @@ class FixedStdActorCriticPolicy(sb.common.policies.ActorCriticPolicy):
         self,
         observation_space: gym.spaces.Space,
         action_space: gym.spaces.Space,
-        lr_schedule: Callable[[float], float],
-        net_arch: Optional[List[Union[int, Dict[str, List[int]]]]] = [dict(pi=[256, 256], vf=[256, 256])],
+        lr_schedule: Schedule,
+        net_arch: Optional[Union[int, Dict[str, List[int]]]] = dict(pi=[256, 256], vf=[256, 256]),
         activation_fn: Type[nn.Module] = nn.ReLU,
         ortho_init: bool = True,
         use_sde: bool = False,
         log_std_init: float = math.log(1/20.0),
         full_std: bool = True,
-        sde_net_arch: Optional[List[int]] = None,
         use_expln: bool = False,
         squash_output: bool = False,
         features_extractor_class: Type[BaseFeaturesExtractor] = FlattenExtractor,
@@ -45,23 +46,22 @@ class FixedStdActorCriticPolicy(sb.common.policies.ActorCriticPolicy):
         optimizer_kwargs: Optional[Dict[str, Any]] = None,
     ):        
         super(FixedStdActorCriticPolicy, self).__init__(
-            observation_space,
-            action_space,
-            lr_schedule,
-            net_arch,
-            activation_fn,
-            ortho_init,
-            use_sde,
-            log_std_init,
-            full_std,
-            sde_net_arch,
-            use_expln,
-            squash_output,
-            features_extractor_class,
-            features_extractor_kwargs,
-            normalize_images,
-            optimizer_class,
-            optimizer_kwargs,
+            observation_space= observation_space,
+            action_space= action_space,
+            lr_schedule=lr_schedule,
+            net_arch=net_arch,
+            activation_fn=activation_fn,
+            ortho_init=ortho_init,
+            use_sde=use_sde,
+            log_std_init=log_std_init,
+            full_std=full_std,
+            use_expln=use_expln,
+            squash_output=squash_output,
+            features_extractor_class=features_extractor_class,
+            features_extractor_kwargs=features_extractor_kwargs,
+            normalize_images=normalize_images,
+            optimizer_class=optimizer_class,
+            optimizer_kwargs=optimizer_kwargs,
         )
         self.log_std_action_bound_start = torch.tensor([math.log(1/10.0) for bound in action_space.high], device="cuda:0")
         self.log_std_action_bound_finish = torch.tensor([math.log(1/20.0) for bound in action_space.high], device="cuda:0")
@@ -69,7 +69,7 @@ class FixedStdActorCriticPolicy(sb.common.policies.ActorCriticPolicy):
 
         return 
 
-    def _build(self, lr_schedule: Callable[[float], float]) -> None:
+    def _build(self, lr_schedule: Schedule) -> None:
         """
         Create the networks and the optimizer.
 

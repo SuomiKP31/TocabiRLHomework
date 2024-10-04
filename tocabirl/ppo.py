@@ -80,7 +80,7 @@ class PPO(sb.PPO):
         self.grav_pretrain_optim = optim.Adam(
             self.policy.parameters(),
             lr=1e-3,
-            betas=[0.9, 0.999]
+            betas=(0.9, 0.999)
         )
 
         self.save_dir = os.path.join("trained_model",task,f"ppo2_DYROSTocabi_{str(datetime.datetime.now())}")
