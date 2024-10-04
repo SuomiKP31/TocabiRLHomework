@@ -1,3 +1,4 @@
+This repository is created as a fork of [TocabiRLHomework](https://github.com/kdh0429/TocabiRLHomework) in order to upgrade the sb3 version used in the orginal repo.
 # TOCABI Reinforcement Learning
 This package includes MuJoCo environment for humanoid TOCABI reinforcement learning. TOCABI is a human-sized humanoid developed in Seoul National University [DYROS LAB](http://dyros.snu.ac.kr/). The `main` branch includes an end-to-end torque control RL. 
 
