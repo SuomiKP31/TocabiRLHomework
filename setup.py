@@ -24,7 +24,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
-    install_requires=['numpy>=1.15','scipy>=1.0.0','gym>=0.17.0,<=0.19.0','stable_baselines3<=2.3.2,>=2.3.2','mujoco-py<2.2,>=2.1', 'pyquaternion', 'cython<3'],
+    install_requires=['numpy>=1.15','scipy>=1.0.0','gym>=0.17.0,<=0.19.0','stable_baselines3<=2.3.2,>=2.3.2','mujoco-py<2.2,>=2.1', 'pyquaternion', 'cython<3', 'shimmy>=0.2.1'],
     package_data={
         "tocabirl": ["cust_gym/assets/*.xml", "cust_gym/meshes/dyros_tocabi/*.STL"],
         # "tocabirl": ["cust_gym/meshes/*.STL"],

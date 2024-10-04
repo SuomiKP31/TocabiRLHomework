@@ -5,3 +5,4 @@ stable_baselines3<=2.3.2,>=2.3.2
 mujoco-py<2.2,>=2.1
 pyquaternion
 cython<3
+shimmy>=0.2.1

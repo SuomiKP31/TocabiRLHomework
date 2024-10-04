@@ -21,7 +21,7 @@ from dataclasses import dataclass
 @dataclass 
 class args:
    run_type = "train" # "train", "fine_tune", "enjoy",
-   n_cpu = 1 if run_type == "enjoy" else 8
+   n_cpu = 1 if run_type == "enjoy" else 2 # 8
    task = 'Walk' # "Stand Still", "Squat", "Walk", "AtlasWalk" 
    render = False # Available when n_cpu = 1 or run_type = "enjoy"
    n_steps = int(2*8192/n_cpu)

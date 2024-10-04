@@ -1,6 +1,6 @@
 from .fixed_stddev_policy import FixedStdActorCriticPolicy
-from stable_baselines3.common.policies import register_policy
+# from stable_baselines3.common.policies import register_policy
 
-CustomMlpPolicy = FixedStdActorCriticPolicy
+# CustomMlpPolicy = FixedStdActorCriticPolicy
 
-register_policy("FixedStddevMlpPolicy", FixedStdActorCriticPolicy)
+# register_policy("FixedStddevMlpPolicy", FixedStdActorCriticPolicy)
