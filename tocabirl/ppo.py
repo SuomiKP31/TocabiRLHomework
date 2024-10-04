@@ -92,20 +92,17 @@ class PPO(sb.PPO):
     # override of sb.common.on_policy_algorithm
     def learn(
         self,
-        total_timesteps: int,
-        callback: MaybeCallback = None,
-        log_interval: int = 1,
-        eval_env: Optional[GymEnv] = None,
-        eval_freq: int = -1,
-        n_eval_episodes: int = 5,
-        tb_log_name: str = "OnPolicyAlgorithm",
-        eval_log_path: Optional[str] = None,
-        reset_num_timesteps: bool = True,
+            total_timesteps: int,
+            callback: MaybeCallback = None,
+            log_interval: int = 1,
+            tb_log_name: str = "OnPolicyAlgorithm",
+            reset_num_timesteps: bool = True,
+            progress_bar: bool = False,
     ) -> "OnPolicyAlgorithm":
         iteration = 0
 
         total_timesteps, callback = self._setup_learn(
-            total_timesteps, eval_env, callback, eval_freq, n_eval_episodes, eval_log_path, reset_num_timesteps, tb_log_name
+            total_timesteps, callback, reset_num_timesteps, tb_log_name, progress_bar
         )
 
         callback.on_training_start(locals(), globals())
